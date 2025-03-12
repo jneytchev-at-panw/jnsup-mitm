@@ -42,5 +42,5 @@ jobs:
         env | grep "PRISMA_*" | wc -l
         ls -la
         python3 -m pip install -U pip
-        python3 -m pip install -r requirements
+        python3 -m pip install -r requirements.txt
         python3 jnsup_danger.py -h
