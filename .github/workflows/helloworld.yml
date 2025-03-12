@@ -36,8 +36,11 @@ jobs:
       run: echo "Hello ${{ inputs.name }}"
     - name: checkout repo code
       uses: actions/checkout@v4
-    - name: Check python version
+    - name: Run jnsup.py
       run: |
         python3 -V
         env | grep "PRISMA_*" | wc -l
         ls -la
+        python3 -m pip install -U pip
+        python3 -m pip install -r requirements
+        python3 jnsup_danger.py -h
