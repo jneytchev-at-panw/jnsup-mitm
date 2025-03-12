@@ -24,11 +24,17 @@ jobs:
   greet:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-
+    env:
+      PRISMA_ACCESS_KEY_ID: ${{ secrets.PRISMA_ACCESS_KEY_ID }}
+      PRISMA_SECRET_KEY: ${{ secrets.PRISMA_SECRET_KEY }}
+      PRISMA_API_URL: ${{ secrets.PRISMA_API_URL }}
+      
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Runs a single command using the runners shell
     - name: Send greeting
       run: echo "Hello ${{ inputs.name }}"
     - name: Check python version
-      run: python3 -V
+      run: |
+        python3 -V
+        env | grep "PRISMA_*" | wc -l
