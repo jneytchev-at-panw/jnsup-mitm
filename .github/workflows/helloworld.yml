@@ -34,7 +34,10 @@ jobs:
     # Runs a single command using the runners shell
     - name: Send greeting
       run: echo "Hello ${{ inputs.name }}"
+    - name: checkout repo code
+      uses: actions/checkout@v4
     - name: Check python version
       run: |
         python3 -V
         env | grep "PRISMA_*" | wc -l
+        ls -la
