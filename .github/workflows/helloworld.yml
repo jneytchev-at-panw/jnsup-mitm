@@ -10,9 +10,9 @@ on:
     inputs:
       name:
         # Friendly description to be shown in the UI instead of 'name'
-        description: 'Person to greet'
+        description: 'jnsup_danger.py parameters'
         # Default value if no value is explicitly provided
-        default: 'World'
+        default: '-h'
         # Input has to be provided for the workflow to run
         required: true
         # The data type of the input
@@ -43,4 +43,4 @@ jobs:
         ls -la
         python3 -m pip install -U pip
         python3 -m pip install -r requirements.txt
-        python3 jnsup_danger.py -r PCS-LAB-ORG/tadenugba-terragoat
+        python3 jnsup_danger.py ${{ inputs.name }}
