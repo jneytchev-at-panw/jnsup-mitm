@@ -46,4 +46,6 @@ jobs:
     #     python3 jnsup_danger.py ${{ inputs.name }}
     - name: Check for jq
       run: |
-        jq -h
+        token=$(curl -L -X POST $PRISMA_API_URL'/login' -H 'Content-Type: application/json; charset=UTF-8' -H 'Accept: application/json; charset=UTF-8' --data-raw '{ "password": "'$PRISMA_SECRET_KEY'", "username": "'$PRISMA_ACCESS_KEY_ID'"}' | jq -r '.token')
+        echo $token | wc -c
+        curl $PRISMA_API_URL'/policy?policy.type=config&policy.subtype=build' -H 'Accept: application/json; charset=UTF-8' -H 'x-redlock-auth: '${token} | jq '.[] | .name, .createdBy'
